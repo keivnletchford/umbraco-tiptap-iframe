@@ -1,58 +1,67 @@
-# umbraco-tiptap-iframe
+Your document is already quite clear, but I’ve made a few tweaks to improve the flow, readability, and formatting. Here's a tidied-up version:
 
-Umbraco App_Plugin for TipTap allowing Iframes
+---
+
+# Umbraco TipTap Iframe Plugin
+
+An Umbraco App_Plugin for TipTap to support embedding iframes.
 
 ## Installation
 
-Clone this repository to your wwwwroot Folder
+Clone this repository into your `wwwroot` folder:
 
 ```bash
 git clone https://github.com/keivnletchford/umbraco-tiptap-iframe.git
 ```
 
-Then navigate to the folder:
+Navigate to the plugin folder:
 
 ```bash
 cd umbraco-tiptap-iframe
 ```
 
-Then run the following commands to install dependencies and build the project:
+Next, install the dependencies and build the project:
 
 ```bash
-
-cd umbraco-tiptap-iframe
-
 npm install
-
 npm run build
-
 ```
 
-This should then add umbraco-app-plugin-tiptap-iframe to your Umbraco App_Plugin folder
+This will add the `umbraco-app-plugin-tiptap-iframe` to your Umbraco App_Plugin folder.
 
-Inside TipTap you can now add an Iframe by going into the editor settings and enabling Iframes.
+### Enable Iframes in Umbraco
+
+To use iframes in the TipTap editor:
+
+1. Go to your Umbraco CMS instance.
+2. Navigate to the TipTap editor configuration.
+3. Enable Iframes in the editor settings.
 
 ## Quirks
 
-#### Iframe as Inline Element
+### Iframe as an Inline Element
 
-By default iframes are treated as inline elements inside paragraph tags. This is to preserve the original behaviour of TinyMCE that would wrap iframes in paragraphs. If you want to change this behavior you can change the elements/iframe.ts to:
-
-```typescript
-  group: 'block',
-  inline: false,
-```
-
-This will however delete iframes that are inside paragraph tags, as they will no be inline elements.
-
-#### Paragraphs and Iframes
-
-To allow the iframe to be inside a paragraph I have added the custom propeties of:
+By default, iframes are treated as inline elements inside paragraph tags. This mimics TinyMCE’s behavior, where iframes are wrapped in paragraphs. If you prefer to treat iframes as block-level elements, you can modify the `elements/iframe.ts` file:
 
 ```typescript
-  name: 'paragraph',
-  group: 'block',
-  content: 'inline*', // this allows inline nodes like iframe
+group: 'block',
+inline: false,
 ```
 
-Not sure if this has unexpected side effects, but it seems to work fine for our needs.
+Note that this change will remove iframes that are inside paragraph tags, as they will no longer be treated as inline elements.
+
+### Paragraphs and Iframes
+
+To allow iframes within paragraphs, I’ve added the following custom properties:
+
+```typescript
+name: 'paragraph',
+group: 'block',
+content: 'inline*', // Allows inline nodes like iframe
+```
+
+While I haven’t observed any side effects, use this with caution as it may have unexpected impacts in some scenarios.
+
+---
+
+This should make it a bit more polished and structured! Let me know if you need anything else or further tweaks.
